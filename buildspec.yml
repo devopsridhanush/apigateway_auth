@@ -11,10 +11,6 @@ phases:
       - export CLIENT_ID="BjwM81mdYLcJwCZGQKUSQ44DY3Ex0NYr"
       - export CLIENT_SECRET="Zc_0ZbJKOcq-VyLSX9G6ijPQW0WyLYp6OdAkED5j7eHYdN_9f5bXxwMhWLLbQly8"
       - export AUDIENCE="https://api.example.com"
-      - echo "AUTH0_DOMAIN=$AUTH0_DOMAIN"
-      - echo "CLIENT_ID=$CLIENT_ID"
-      - echo "CLIENT_SECRET=$CLIENT_SECRET"
-      - echo "AUDIENCE=$AUDIENCE"
       - |
         TOKEN=$(curl --silent --request POST \
           --url "https://${AUTH0_DOMAIN}/oauth/token" \
