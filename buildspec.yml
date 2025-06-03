@@ -24,6 +24,8 @@ phases:
     commands:
       - echo "Calling protected API with token..."
       - curl -H "Authorization: Bearer $TOKEN" https://zk8xx60iqd.execute-api.us-east-1.amazonaws.com/prod/hello
+      - echo "done" > output.txt
 
 artifacts:
-  files: []
+  files:
+    - output.txt
