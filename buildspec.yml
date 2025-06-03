@@ -11,18 +11,21 @@ phases:
       - export CLIENT_ID="BjwM81mdYLcJwCZGQKUSQ44DY3Ex0NYr"
       - export CLIENT_SECRET="Zc_0ZbJKOcq-VyLSX9G6ijPQW0WyLYp6OdAkED5j7eHYdN_9f5bXxwMhWLLbQly8"
       - export AUDIENCE="https://api.example.com"
-      - |
-        TOKEN=$(curl --silent --request POST \
+      - echo "AUTH0_DOMAIN=$AUTH0_DOMAIN"
+      - echo "CLIENT_ID=$CLIENT_ID"
+      - echo "CLIENT_SECRET=$CLIENT_SECRET"
+      - echo "AUDIENCE=$AUDIENCE"
+      - TOKEN=$(curl --silent --request POST \
           --url "https://${AUTH0_DOMAIN}/oauth/token" \
           --header 'content-type: application/json' \
           --data "{\"client_id\":\"${CLIENT_ID}\",\"client_secret\":\"${CLIENT_SECRET}\",\"audience\":\"${AUDIENCE}\",\"grant_type\":\"client_credentials\"}" \
-          | python -c "import sys, json; print(json.load(sys.stdin)['access_token'])")
-        export TOKEN
+          | python -c "import sys, json; print(json.load(sys.stdin)['access_token'])") && export TOKEN
+      - echo "TOKEN=$TOKEN"
 
   build:
     commands:
       - echo "Calling protected API with token..."
-      - curl -H "Authorization: Bearer $TOKEN" https://zk8xx60iqd.execute-api.us-east-1.amazonaws.com/prod/hello
+      - curl -v -H "Authorization: Bearer $TOKEN" https://zk8xx60iqd.execute-api.us-east-1.amazonaws.com/prod/hello
       - echo "done" > output.txt
 
 artifacts:
