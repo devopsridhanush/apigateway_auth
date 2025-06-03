@@ -23,7 +23,7 @@ phases:
   build:
     commands:
       - echo "Calling protected API with token..."
-      - curl -H "Authorization: Bearer $TOKEN" https://<your-api-gateway-url>/prod/hello
+      - curl -H "Authorization: Bearer $TOKEN" https://zk8xx60iqd.execute-api.us-east-1.amazonaws.com/prod/hello
 
 artifacts:
   files: []
