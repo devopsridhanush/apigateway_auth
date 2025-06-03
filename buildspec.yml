@@ -8,10 +8,10 @@ phases:
   pre_build:
     commands:
       - export AUTH0_DOMAIN="dev-k5tma83wlfoi88qe.us.auth0.com"
-      - export CLIENT_ID="YOUR_CLIENT_ID"
-      - export CLIENT_SECRET="YOUR_CLIENT_SECRET"
+      - export CLIENT_ID="BjwM81mdYLcJwCZGQKUSQ44DY3Ex0NYr"
+      - export CLIENT_SECRET="Zc_0ZbJKOcq-VyLSX9G6ijPQW0WyLYp6OdAkED5j7eHYdN_9f5bXxwMhWLLbQly8"
       - export AUDIENCE="https://api.example.com"
-      # Fetch the token from Auth0
+      # Fetch the token from Auth0 sample line
       - |
         TOKEN=$(curl --silent --request POST \
           --url "https://${AUTH0_DOMAIN}/oauth/token" \
