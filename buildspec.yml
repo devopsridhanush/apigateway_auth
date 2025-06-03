@@ -12,13 +12,13 @@ phases:
       - export CLIENT_SECRET="Zc_0ZbJKOcq-VyLSX9G6ijPQW0WyLYp6OdAkED5j7eHYdN_9f5bXxwMhWLLbQly8"
       - export AUDIENCE="https://api.example.com"
       - |
-        TOKEN=$(curl --silent --request POST \
-          --url "https://${AUTH0_DOMAIN}/oauth/token" \
-          --header 'content-type: application/json' \
-          --data "{\"client_id\":\"${CLIENT_ID}\",\"client_secret\":\"${CLIENT_SECRET}\",\"audience\":\"${AUDIENCE}\",\"grant_type\":\"client_credentials\"}" \
-          | python -c "import sys, json; print(json.load(sys.stdin)['access_token'])")
-        export TOKEN
-        echo "TOKEN=$TOKEN"
+          TOKEN=$(curl --silent --request POST \
+            --url "https://${AUTH0_DOMAIN}/oauth/token" \
+            --header 'content-type: application/json' \
+            --data "{\"client_id\":\"${CLIENT_ID}\",\"client_secret\":\"${CLIENT_SECRET}\",\"audience\":\"${AUDIENCE}\",\"grant_type\":\"client_credentials\"}" \
+            | python -c "import sys, json; print(json.load(sys.stdin)['access_token'])")
+          export TOKEN
+          echo "TOKEN=$TOKEN"
 
   build:
     commands:
