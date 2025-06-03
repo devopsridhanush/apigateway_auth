@@ -1,0 +1,29 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.11
+
+  pre_build:
+    commands:
+      - export AUTH0_DOMAIN="dev-k5tma83wlfoi88qe.us.auth0.com"
+      - export CLIENT_ID="YOUR_CLIENT_ID"
+      - export CLIENT_SECRET="YOUR_CLIENT_SECRET"
+      - export AUDIENCE="https://api.example.com"
+      # Fetch the token from Auth0
+      - |
+        TOKEN=$(curl --silent --request POST \
+          --url "https://${AUTH0_DOMAIN}/oauth/token" \
+          --header 'content-type: application/json' \
+          --data "{\"client_id\":\"${CLIENT_ID}\",\"client_secret\":\"${CLIENT_SECRET}\",\"audience\":\"${AUDIENCE}\",\"grant_type\":\"client_credentials\"}" \
+          | python -c "import sys, json; print(json.load(sys.stdin)['access_token'])")
+        export TOKEN
+
+  build:
+    commands:
+      - echo "Calling protected API with token..."
+      - curl -H "Authorization: Bearer $TOKEN" https://<your-api-gateway-url>/prod/hello
+
+artifacts:
+  files: []
